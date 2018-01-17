@@ -28,4 +28,18 @@ public class ExampleUnitTest {
         dao.add(new Student(2, "Mary", 90));
         assertEquals(90, dao.getList().get(1).score);
     }
+    @Test
+    public void test_getStudent() throws Exception {
+        StudentScoreDAO dao = new StudentScoreDAO();
+        dao.add(new Student(1, "Bob", 95));
+        dao.add(new Student(2, "Mary", 90));
+        assertEquals(90, dao.getStudent(2).score);
+    }
+    @Test
+    public void test_getStudent1() throws Exception {
+        StudentScoreDAO dao = new StudentScoreDAO();
+        dao.add(new Student(1, "Bob", 95));
+        dao.add(new Student(2, "Mary", 90));
+        assertEquals(null, dao.getStudent(3));
+    }
 }
