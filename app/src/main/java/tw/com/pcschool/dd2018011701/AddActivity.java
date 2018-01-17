@@ -23,5 +23,6 @@ public class AddActivity extends AppCompatActivity {
         String name = ed2.getText().toString();
         int score = Integer.valueOf(ed3.getText().toString());
         MainActivity.dao.add(new Student(id, name, score));
+        finish();
     }
 }
