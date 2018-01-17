@@ -2,6 +2,9 @@ package tw.com.pcschool.dd2018011701;
 
 import org.junit.Test;
 
+import tw.com.pcschool.dd2018011701.data.Student;
+import tw.com.pcschool.dd2018011701.data.StudentScoreDAO;
+
 import static org.junit.Assert.*;
 
 /**
@@ -11,17 +14,18 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void test_add_data() throws Exception {
+        StudentScoreDAO dao = new StudentScoreDAO();
+        dao.add(new Student(1, "Bob", 95));
+        dao.add(new Student(2, "Mary", 90));
+        assertEquals(2, dao.getList().size());
     }
-    @Test
-    public void test1() throws Exception {
-        assertEquals(8, 2+6);
-    }
-    @Test
-    public void test2() throws Exception {
-        MyTest1 t = new MyTest1();
 
-        assertEquals(8, t.getAdd(2,6));
+    @Test
+    public void test_add_data2() throws Exception {
+        StudentScoreDAO dao = new StudentScoreDAO();
+        dao.add(new Student(1, "Bob", 95));
+        dao.add(new Student(2, "Mary", 90));
+        assertEquals(90, dao.getList().get(1).score);
     }
 }
