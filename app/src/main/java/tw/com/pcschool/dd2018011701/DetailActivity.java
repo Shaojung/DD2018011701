@@ -14,6 +14,7 @@ import tw.com.pcschool.dd2018011701.data.Student;
 public class DetailActivity extends AppCompatActivity {
     Student s;
     TextView tv1, tv2, tv3;
+    boolean fastBack = false;
     int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,10 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (fastBack)
+        {
+            finish();
+        }
         s = MainActivity.dao.getStudent(id);
         tv1.setText(String.valueOf(s.id));
         tv2.setText(s.name);
@@ -62,6 +67,7 @@ public class DetailActivity extends AppCompatActivity {
     {
         Intent it = new Intent(DetailActivity.this, EditActivity.class);
         it.putExtra("id", id);
+        fastBack = true;
         startActivity(it);
     }
 }
