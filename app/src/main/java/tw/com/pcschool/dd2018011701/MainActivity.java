@@ -13,15 +13,17 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import tw.com.pcschool.dd2018011701.data.Student;
+import tw.com.pcschool.dd2018011701.data.StudentFileDAO;
 import tw.com.pcschool.dd2018011701.data.StudentScoreDAO;
 
 public class MainActivity extends AppCompatActivity {
-    final public static StudentScoreDAO dao = new StudentScoreDAO();
+    public static StudentFileDAO dao;
     ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dao = new StudentFileDAO(this);
     }
 
     @Override
