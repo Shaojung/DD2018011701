@@ -13,17 +13,21 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import tw.com.pcschool.dd2018011701.data.Student;
+import tw.com.pcschool.dd2018011701.data.StudentDAO;
+import tw.com.pcschool.dd2018011701.data.StudentDAOFactory;
 import tw.com.pcschool.dd2018011701.data.StudentFileDAO;
 import tw.com.pcschool.dd2018011701.data.StudentScoreDAO;
 
 public class MainActivity extends AppCompatActivity {
-    public static StudentFileDAO dao;
+    public static StudentDAO dao;
+    int dbType;
     ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dao = new StudentFileDAO(this);
+        dbType = 1; // 1:記憶體 2:檔案
+        dao = StudentDAOFactory.getDAOInstance(this, dbType);
     }
 
     @Override
