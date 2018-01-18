@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import tw.com.pcschool.dd2018011701.data.DBType;
 import tw.com.pcschool.dd2018011701.data.Student;
 import tw.com.pcschool.dd2018011701.data.StudentDAO;
 import tw.com.pcschool.dd2018011701.data.StudentDAOFactory;
@@ -20,13 +21,13 @@ import tw.com.pcschool.dd2018011701.data.StudentScoreDAO;
 
 public class MainActivity extends AppCompatActivity {
     public static StudentDAO dao;
-    int dbType;
+    DBType dbType;
     ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dbType = 1; // 1:記憶體 2:檔案
+        dbType = DBType.FILE;
         dao = StudentDAOFactory.getDAOInstance(this, dbType);
     }
 
