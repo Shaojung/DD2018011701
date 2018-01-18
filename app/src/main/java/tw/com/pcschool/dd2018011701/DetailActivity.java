@@ -49,7 +49,9 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
         builder.show();
-
+    }
+    public void clickEdit(View v)
+    {
 
     }
 }
