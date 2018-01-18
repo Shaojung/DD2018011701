@@ -1,10 +1,12 @@
 package tw.com.pcschool.dd2018011701;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import tw.com.pcschool.dd2018011701.data.Student;
@@ -52,6 +54,8 @@ public class DetailActivity extends AppCompatActivity {
     }
     public void clickEdit(View v)
     {
-
+        Intent it = new Intent(DetailActivity.this, EditActivity.class);
+        it.putExtra("id", id);
+        startActivity(it);
     }
 }
