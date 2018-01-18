@@ -20,6 +20,11 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         id = getIntent().getIntExtra("id", 0);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         s = MainActivity.dao.getStudent(id);
         tv1 = (TextView) findViewById(R.id.textView);
         tv2 = (TextView) findViewById(R.id.textView2);
@@ -28,6 +33,7 @@ public class DetailActivity extends AppCompatActivity {
         tv2.setText(s.name);
         tv3.setText(String.valueOf(s.score));
     }
+
     public void clickBack(View v)
     {
         finish();
