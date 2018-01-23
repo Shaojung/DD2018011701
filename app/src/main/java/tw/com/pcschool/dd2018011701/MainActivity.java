@@ -3,6 +3,7 @@ package tw.com.pcschool.dd2018011701;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,25 +24,18 @@ public class MainActivity extends AppCompatActivity {
     public static StudentDAO dao;
     DBType dbType;
     ListView lv;
+    ArrayList<String> studentNames;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dbType = DBType.CLOUD;
         dao = StudentDAOFactory.getDAOInstance(this, dbType);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        lv = (ListView) findViewById(R.id.listView);
-        ArrayList<String> studentNames = new ArrayList<>();
-        for (Student s : dao.getList())
-        {
-            studentNames.add(s.name);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,
+        studentNames = new ArrayList<>();
+        adapter = new ArrayAdapter<String>(MainActivity.this,
                 android.R.layout.simple_list_item_1, studentNames);
+        lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -51,6 +45,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshData();
+    }
+    public void refreshData()
+    {
+        studentNames.clear();
+        for (Student s : dao.getList())
+        {
+            studentNames.add(s.name);
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
